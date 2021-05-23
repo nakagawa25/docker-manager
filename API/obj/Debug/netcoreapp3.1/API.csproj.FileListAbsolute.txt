@@ -18,3 +18,6 @@ D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\obj\Debug\netcoreap
 D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\obj\Debug\netcoreapp3.1\API.dll
 D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\obj\Debug\netcoreapp3.1\API.pdb
 D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\obj\Debug\netcoreapp3.1\API.genruntimeconfig.cache
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\RestSharp.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\obj\Debug\netcoreapp3.1\API.csproj.CopyComplete
