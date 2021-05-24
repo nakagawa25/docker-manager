@@ -8,7 +8,7 @@ namespace API.Controllers.Docker
     {
         public static JToken GetContainers()
         {
-            var client = new RestClient("http://localhost:2375/containers/json");
+            var client = new RestClient(Models.Configuration.DockerURI + "containers/json");
             // client.Authenticator = new HttpBasicAuthenticator("username", "password");
 
             var request = new RestRequest(Method.GET);
