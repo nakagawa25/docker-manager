@@ -10,11 +10,8 @@ namespace API.Controllers.Docker
         {
             var client = new RestClient(Models.Configuration.DockerURI + "containers/json");
             // client.Authenticator = new HttpBasicAuthenticator("username", "password");
-
             var request = new RestRequest(Method.GET);
-
             var response = client.Get(request);
-
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 JToken jsonReceived = JToken.Parse(response.Content);
@@ -22,21 +19,17 @@ namespace API.Controllers.Docker
             }
             else
                 return JToken.Parse("{\"message\":\"Não foi possível obter a lista de containers\"}");
-
         }
 
-
-        // TODO: É preciso enviar a IMAGEM a ser criada.
-        // {
-        //     "Image": "docker/getting-started"
-        // }
-        public static JToken CreateContainer(string containerName)
+        public static JToken CreateContainer(string containerName, string imageName)
         {
             var client = new RestClient(Models.Configuration.DockerURI + "containers/create");
             var request = new RestRequest(Method.POST);
-            request.AddQueryParameter("name", containerName);
-            var response = client.Get(request);
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            request.RequestFormat = DataFormat.Json;
+            request.AddParameter("name", containerName, ParameterType.QueryString);
+            request.AddJsonBody(new {image = imageName});
+            IRestResponse response = client.Execute(request);
+            if (response.IsSuccessful)
             {
                 JToken jsonReceived = JToken.Parse(response.Content);
                 return jsonReceived;

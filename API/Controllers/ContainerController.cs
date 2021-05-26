@@ -1,5 +1,7 @@
 using System;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace API.Controllers
 {
@@ -16,11 +18,12 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("")]
-        public string Create([FromBody] string containerId)
+        public string Create([FromBody] Models.Container body)
         {
-            Console.WriteLine("Entrou: " + containerId);
-            var response = Docker.ContainerTools.CreateContainer(containerId);
-            Console.WriteLine("Passou");
+            Console.WriteLine("Entrou: " + body.containerName + " " + body.imageName);
+
+            var response = Docker.ContainerTools.CreateContainer(body.containerName, body.imageName);
+            
             return response.ToString();
         }
     }
