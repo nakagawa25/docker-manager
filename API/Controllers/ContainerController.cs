@@ -20,10 +20,15 @@ namespace API.Controllers
         [Route("")]
         public string Create([FromBody] Models.Container body)
         {
-            Console.WriteLine("Entrou: " + body.containerName + " " + body.imageName);
-
             var response = Docker.ContainerTools.CreateContainer(body.containerName, body.imageName);
-            
+            return response.ToString();
+        }
+
+        [HttpDelete]
+        [Route("")]
+        public string Delete([FromBody] string containerId)
+        {
+            var response = Docker.ContainerTools.DeleteContainer(containerId);
             return response.ToString();
         }
     }

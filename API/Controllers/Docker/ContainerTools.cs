@@ -27,7 +27,7 @@ namespace API.Controllers.Docker
             var request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
             request.AddParameter("name", containerName, ParameterType.QueryString);
-            request.AddJsonBody(new {image = imageName});
+            request.AddJsonBody(new { image = imageName });
             IRestResponse response = client.Execute(request);
             if (response.IsSuccessful)
             {
@@ -36,6 +36,18 @@ namespace API.Controllers.Docker
             }
             else
                 return JToken.Parse("{\"message\":\"Não foi possível criar o container\"}");
+        }
+
+        public static JToken DeleteContainer(string containerId)
+        {
+            var client = new RestClient(Models.Configuration.DockerURI + "containers/" + containerId);
+            var request = new RestRequest(Method.DELETE);
+            request.AddParameter("force", true, ParameterType.QueryString);
+            IRestResponse response = client.Execute(request);
+            if (response.IsSuccessful)
+                return JToken.Parse("{\"message\":\"Container excluído com sucesso\"}");
+            else
+                return JToken.Parse("{\"message\":\"Não foi possível excluír o container\"}");
         }
     }
 }
