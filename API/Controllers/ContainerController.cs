@@ -1,13 +1,10 @@
-using System;
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("v1/containers")]
-    public class ContainerController
+    public class ContainerController // : ControllerBase
     {
         [HttpGet]
         [Route("")]
