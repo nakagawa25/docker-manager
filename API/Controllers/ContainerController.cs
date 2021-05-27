@@ -1,24 +1,47 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("v1/containers")]
-    public class ContainerController // : ControllerBase
+    public class ContainerController : ControllerBase
     {
         [HttpGet]
         [Route("")]
-        public string Get()
+        public IActionResult Get()
         {
-            return Docker.ContainerTools.GetContainers().ToString();
+            try
+            {
+                var containers = Docker.ContainerTools.GetContainers();
+                return Ok(containers);
+            }
+            catch (Utils.Exceptions.APIException apiEx)
+            {
+                // TODO: Adicionar algum tratamento melhor?
+                return BadRequest(apiEx.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Houve um erro na API. Erro: " + ex.Message);
+            }
         }
 
         [HttpPost]
         [Route("")]
-        public string Create([FromBody] Models.Container body)
+        public IActionResult Create([FromBody] Models.ContainerInput body)
         {
-            var response = Docker.ContainerTools.CreateContainer(body.containerName, body.imageName);
-            return response.ToString();
+            try
+            {
+                if (Docker.ContainerTools.CreateContainer(body.containerName, body.imageName))
+                    return Ok();
+                else
+                    return BadRequest("{\"message\":\"Não foi possível criar o container\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Erro ao criar o container. Erro: " + ex.Message);
+            }
         }
 
         [HttpDelete]
@@ -27,6 +50,14 @@ namespace API.Controllers
         {
             var response = Docker.ContainerTools.DeleteContainer(containerId);
             return response.ToString();
+        }
+
+        [HttpDelete]
+        [Route("/all")]
+        public IActionResult DeleteAll()
+        {
+            // TODO: Adicionar o DeleteAll.
+            return null;
         }
     }
 }

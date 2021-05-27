@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
@@ -5,21 +7,24 @@ namespace API.Controllers.Docker
 {
     public class ContainerTools
     {
-        public static JToken GetContainers()
+        public static List<Models.Container> GetContainers()
         {
             var client = new RestClient(Models.Configuration.DockerURI + "containers/json");
             var request = new RestRequest(Method.GET);
+            request.AddParameter("all", true, ParameterType.QueryString);
             var response = client.Get(request);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                JToken jsonReceived = JToken.Parse(response.Content);
-                return jsonReceived;
+                List<Models.Container> containers = new List<Models.Container>();
+                foreach (var container in JToken.Parse(response.Content))
+                    containers.Add(CreateContainerObject(container));
+                return containers;
             }
             else
-                return JToken.Parse("{\"message\":\"Não foi possível obter a lista de containers\"}");
+                throw new Utils.Exceptions.APIException("Erro ao obter a lista de containers do Docker.");
         }
 
-        public static JToken CreateContainer(string containerName, string imageName)
+        public static bool CreateContainer(string containerName, string imageName)
         {
             var client = new RestClient(Models.Configuration.DockerURI + "containers/create");
             var request = new RestRequest(Method.POST);
@@ -27,13 +32,7 @@ namespace API.Controllers.Docker
             request.AddParameter("name", containerName, ParameterType.QueryString);
             request.AddJsonBody(new { image = imageName });
             IRestResponse response = client.Execute(request);
-            if (response.IsSuccessful)
-            {
-                JToken jsonReceived = JToken.Parse(response.Content);
-                return jsonReceived;
-            }
-            else
-                return JToken.Parse("{\"message\":\"Não foi possível criar o container\"}");
+            return response.IsSuccessful;
         }
 
         public static JToken DeleteContainer(string containerId)
@@ -46,6 +45,22 @@ namespace API.Controllers.Docker
                 return JToken.Parse("{\"message\":\"Container excluído com sucesso\"}");
             else
                 return JToken.Parse("{\"message\":\"Não foi possível excluír o container\"}");
+        }
+
+        public static Models.Container CreateContainerObject(JToken json)
+        {
+            Models.Container container = new Models.Container();
+            container.Id = json["Id"].ToString();
+            container.Name = json["Names"][0].ToString();
+            container.imageName = json["Image"].ToString();
+            container.Status = json["State"].ToString();
+            if (json["Ports"] != null && json["Ports"].Any())
+            {
+                foreach (var port in json["Ports"])
+                    container.Ports.Add((int)port["PrivatePort"]);
+            }
+
+            return container;
         }
     }
 }
