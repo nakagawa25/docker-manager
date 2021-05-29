@@ -1,30 +1,63 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("v1/images")]
-    public class ImageController
+    public class ImageController : ControllerBase
     {
         [HttpGet]
         [Route("")]
-        public string Get()
+        public IActionResult Get()
         {
-            return Docker.ImageTools.GetImages().ToString();
+            try
+            {
+                var images = Docker.ImageTools.GetImages();
+                return Ok(images);
+            }
+            catch (Utils.Exceptions.APIException apiEx)
+            {
+                return BadRequest(apiEx.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Houve um erro na API. Erro: " + ex.Message);
+            }
         }
 
         [HttpPost]
         [Route("")]
-        public string Create([FromBody] string imageName)
+        public IActionResult Create([FromBody] Models.ImageInput json)
         {
-            return Docker.ImageTools.CreateImage(imageName).ToString();
+            try
+            {
+                if (Docker.ImageTools.CreateImage(json))
+                    return Ok();
+                else
+                    return BadRequest("{\"message\":\"Não foi possível criar a imagem\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Erro ao criar a imagem. Erro: " + ex.Message);
+            }
         }
 
         [HttpDelete]
         [Route("")]
-        public string Delete([FromBody] string imageId)
+        public IActionResult Delete([FromBody] string imageId)
         {
-            return Docker.ImageTools.DeleteImage(imageId).ToString();
+            try
+            {
+                if (Docker.ImageTools.DeleteImage(imageId))
+                    return Ok("{\"message\":\"Imagem excluído com sucesso\"}");
+                else
+                    return BadRequest("{\"message\":\"Não foi possível excluír a imagem\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("{\"message\":\"Erro na API. Erro: " + ex.Message + "\"}");
+            }
         }
     }
 }

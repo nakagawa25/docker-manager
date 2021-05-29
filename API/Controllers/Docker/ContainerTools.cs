@@ -35,16 +35,13 @@ namespace API.Controllers.Docker
             return response.IsSuccessful;
         }
 
-        public static JToken DeleteContainer(string containerId)
+        public static bool DeleteContainer(string containerId)
         {
             var client = new RestClient(Models.Configuration.DockerURI + "containers/" + containerId);
             var request = new RestRequest(Method.DELETE);
             request.AddParameter("force", true, ParameterType.QueryString);
             IRestResponse response = client.Execute(request);
-            if (response.IsSuccessful)
-                return JToken.Parse("{\"message\":\"Container excluído com sucesso\"}");
-            else
-                return JToken.Parse("{\"message\":\"Não foi possível excluír o container\"}");
+            return response.IsSuccessful;
         }
 
         public static Models.Container CreateContainerObject(JToken json)

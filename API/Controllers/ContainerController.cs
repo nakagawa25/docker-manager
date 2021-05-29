@@ -18,7 +18,6 @@ namespace API.Controllers
             }
             catch (Utils.Exceptions.APIException apiEx)
             {
-                // TODO: Adicionar algum tratamento melhor?
                 return BadRequest(apiEx.Message);
             }
             catch (Exception ex)
@@ -46,10 +45,19 @@ namespace API.Controllers
 
         [HttpDelete]
         [Route("")]
-        public string Delete([FromBody] string containerId)
+        public IActionResult Delete([FromBody] string containerId)
         {
-            var response = Docker.ContainerTools.DeleteContainer(containerId);
-            return response.ToString();
+            try
+            {
+                if (Docker.ContainerTools.DeleteContainer(containerId))
+                    return Ok("{\"message\":\"Container excluído com sucesso\"}");
+                else
+                    return BadRequest("{\"message\":\"Não foi possível excluír o container\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("{\"message\":\"Erro interno na API. Erro: " + ex.Message + "\"}");
+            }
         }
 
         [HttpDelete]
