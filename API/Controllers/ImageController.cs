@@ -59,5 +59,24 @@ namespace API.Controllers
                 return BadRequest("{\"message\":\"Erro na API. Erro: " + ex.Message + "\"}");
             }
         }
+
+        [HttpDelete]
+        [Route("all")]
+        public IActionResult DeleteAll()
+        {
+            try
+            {
+                Docker.ImageTools.DeleteAllImages();
+                return Ok("{\"message\":\"Sucesso, todas as imagens foram excluídas\"}");
+            }
+            catch (Utils.Exceptions.APIException apiEx)
+            {
+                return BadRequest("{\"message\":\"Erro da API. Erro: " + apiEx.Message + "\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("{\"message\":\"Erro interno da API. Erro: " + ex.Message + "\"}");
+            }
+        }
     }
 }

@@ -16,7 +16,8 @@ namespace API.Controllers.Docker
             {
                 List<Models.Image> images = new List<Models.Image>();
                 foreach (var image in JToken.Parse(response.Content))
-                images.Add(CreateImageObject(image));
+                    images.Add(CreateImageObject(image));
+
                 return images;
             }
             else
@@ -31,6 +32,7 @@ namespace API.Controllers.Docker
             request.AddParameter("tag", imageInput.Tag, ParameterType.QueryString);
             request.AddParameter("text/plain", "", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
+
             return response.IsSuccessful;
         }
 
@@ -40,7 +42,25 @@ namespace API.Controllers.Docker
             var request = new RestRequest(Method.DELETE);
             request.AddParameter("force", true, ParameterType.QueryString);
             IRestResponse response = client.Execute(request);
+
             return response.IsSuccessful;
+        }
+
+        public static void DeleteAllImages()
+        {
+            DeleteUnusedImages();
+            var images = GetImages();
+            foreach (var image in images)
+                DeleteImage(image.Id);
+        }
+
+        private static void DeleteUnusedImages()
+        {
+            var client = new RestClient(Models.Configuration.DockerURI + "images/prune");
+            var request = new RestRequest(Method.POST);
+            IRestResponse response = client.Execute(request);
+            if (!response.IsSuccessful)
+                throw new Utils.Exceptions.APIException("Erro ao deletar as imagens sem uso. Erro da API: " + response.ErrorMessage);
         }
 
         public static Models.Image CreateImageObject(JToken json)

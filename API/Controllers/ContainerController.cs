@@ -61,11 +61,22 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        [Route("/all")]
+        [Route("all")]
         public IActionResult DeleteAll()
         {
-            // TODO: Adicionar o DeleteAll.
-            return null;
+            try
+            {
+                Docker.ContainerTools.DeleteAllContainers();
+                return Ok("{\"message\":\"Sucesso, todos os containers foram excluídos\"}");
+            }
+            catch (Utils.Exceptions.APIException apiEx)
+            {
+                return BadRequest("{\"message\":\"Erro da API. Erro: " + apiEx.Message + "\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("{\"message\":\"Erro interno da API. Erro: " + ex.Message + "\"}");
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace API.Controllers.Docker
                 List<Models.Container> containers = new List<Models.Container>();
                 foreach (var container in JToken.Parse(response.Content))
                     containers.Add(CreateContainerObject(container));
+
                 return containers;
             }
             else
@@ -32,6 +33,7 @@ namespace API.Controllers.Docker
             request.AddParameter("name", containerName, ParameterType.QueryString);
             request.AddJsonBody(new { image = imageName });
             IRestResponse response = client.Execute(request);
+
             return response.IsSuccessful;
         }
 
@@ -41,7 +43,25 @@ namespace API.Controllers.Docker
             var request = new RestRequest(Method.DELETE);
             request.AddParameter("force", true, ParameterType.QueryString);
             IRestResponse response = client.Execute(request);
+
             return response.IsSuccessful;
+        }
+
+        public static void DeleteAllContainers()
+        {
+            DeleteStoppedContainers();
+            var containers = GetContainers();
+            foreach (var container in containers)
+                DeleteContainer(container.Id);
+        }
+
+        private static void DeleteStoppedContainers()
+        {
+            var client = new RestClient(Models.Configuration.DockerURI + "containers/prune");
+            var request = new RestRequest(Method.POST);
+            IRestResponse response = client.Execute(request);
+            if (!response.IsSuccessful)
+                throw new Utils.Exceptions.APIException("Erro ao deletar os containers sem uso. Erro da API: " + response.ErrorMessage);
         }
 
         public static Models.Container CreateContainerObject(JToken json)
@@ -59,5 +79,7 @@ namespace API.Controllers.Docker
 
             return container;
         }
+
+
     }
 }
