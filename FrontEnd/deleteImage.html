@@ -9,7 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="style/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script>
+    <link rel="stylesheet" href="style/style2.css">
+
 
     <title>
         Sistema de Gerenciamento e Monitoramento de Serviços em Docker
@@ -18,8 +19,20 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
   <body>
+
+    <!--Header-->
+    <!-- <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Sistema de Gerenciamento e Monitoramento de Serviços em Docker</h4>
+                </div>
+            </div>
+        </div>
+    </header> -->
+
     <header>
-        <h4>Monitor</h4>
+        <h4>Delete Image</h4>
     </header>
     <!--Section 01-->
     <section class="section2">
@@ -82,11 +95,24 @@
                 </li>
             </ul>
         </div>
-    <!--------------------------------------------------------------------------------------------------->
-    </section>
-    
-    <section class="charts">
-        <canvas class="line-chart"></canvas>
+        <!-- ---------------------------------Campos e Botões-------------------------------------->
+        <div class="form-create-container">
+            <!-- <h2>Create Container</h2> -->
+                <div class="row100">
+                    <div class="col">
+                        <div class="inputBox">
+                            <input type="text" name="" required="required">
+                            <span class="text">Image Id</span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row100">
+                    <div class="col">
+                        <input type="submit" value="Delete">
+                    </div>
+                </div>
+        </div>
     </section>
 
     <script type="text/javascript">
@@ -98,41 +124,6 @@
         }
     </script>
 
-<script>
-
-    var ctx = document.getElementsByClassName("line-chart");
-
-    var chartGraph = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
-            datasets: [
-                {
-                    label: "TAXA DE CLIQUES - 2017",
-                    data: [5,10,5,14,10,15,6,14,8,12,15,5,10],
-                    borderWidth: 3,
-                    borderColor: 'rgba(255,101,80,0.4)',
-                    backgroundColor: 'transparent',
-                },
-                {
-                    label: "TAXA DE CLIQUES - 2018",
-                    data: [9,14,11,6,5,4,3,8,11,10,13,18,6],
-                    borderWidth: 3,
-                    borderColor: '#5B639C',
-                    backgroundColor: 'transparent',
-                },
-                {
-                    label: "TAXA DE CLIQUES - 2019",
-                    data: [15,9,15,2,11,6,8,3,17,10,16,19,10],
-                    borderWidth: 3,
-                    borderColor: '#4DA60C',
-                    backgroundColor: 'transparent',
-                },
-            ]
-        }
-    });
-
-</script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -10,7 +10,7 @@
 header
 {
     height: 60px;
-    background: #5B639C;
+    background: #0563af;
     border-bottom: 1px solid black;
 }
 
@@ -26,7 +26,7 @@ body
     position: fixed;
     width: 60px;
     height: 100%;
-    background: #5B639C;
+    background: #0563af;
     transition: 0.5s;
     overflow: hidden;
 }
@@ -93,18 +93,19 @@ body
     white-space: nowrap;
 }
 
-
 .toggle
 {
     position: absolute;
     top: 0;
     /* right: -100%; */
-    right: 0;
+    left: 0;
     width: 60px;
     height: 60px;
-    background: #5B639C;
+    background: #0563af;
     cursor: pointer;
     border-bottom: 1px solid black;
+    /* border-right: 1px solid black; */
+
 }
 
 .toggle.active
@@ -130,6 +131,97 @@ body
     content: '\f00d';
 }
 
+.charts
+{
+    width: 900px;
+    height: 900px;
+    margin-left: 30%;
+    margin-top: 30px;
+}
+
+/* .box
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.box select{
+    background: #0563af;
+    color: #fff;
+    padding: 10px;
+    width: 250px;
+    height: 50px;
+    border: none;
+    font-size: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .5);
+    -webkit-appearance: button;
+    outline: none;
+    /* font-family: "Poppins",sans-serif; */
+}
+
+.box:before
+{
+    content: '';
+    /* position: absolute; */
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: #007ce0;
+}
+
+.box:hover:before
+{
+    background: #0472ca;
+}
+
+
+ /* select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background: #5B639C;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+ }
+ select::-ms-expand {
+    display: none;
+ }
+ .select {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #5c6664;
+    overflow: hidden;
+    border-radius: .25em;
+ }
+ .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #2b2e2e;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+ }
+ .select:hover::after {
+    color: #23b499;
+ } */
 h4
 {
     padding-top: 15px;
@@ -158,3 +250,4 @@ h4
         width: 50px;
     }
 }
+
