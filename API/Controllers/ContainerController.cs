@@ -79,6 +79,40 @@ namespace API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("start")]
+        public IActionResult Start([FromBody] string containerId)
+        {
+            try
+            {
+                if (Docker.ContainerTools.StartContainer(containerId))
+                    return Ok();
+                else
+                    return BadRequest("{\"message\":\"Não foi possível iniciar o container\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Erro ao iniciar o container. Erro: " + ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("stop")]
+        public IActionResult Stop([FromBody] string containerId)
+        {
+            try
+            {
+                if (Docker.ContainerTools.StopContainer(containerId))
+                    return Ok();
+                else
+                    return BadRequest("{\"message\":\"Não foi possível parar o container\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Erro ao parar o container. Erro: " + ex.Message);
+            }
+        }
+
         // TODO: Adicionar o filtro de data.
         [HttpGet]
         [Route("stats")]
@@ -94,26 +128,5 @@ namespace API.Controllers
                 return BadRequest("Houve um erro na API. Erro: " + ex.Message);
             }
         }
-
-
-        // // Test
-        // [HttpGet]
-        // [Route("test")]
-        // public IActionResult GetTest([FromBody] string containerId)
-        // {
-        //     try
-        //     {
-        //         var containersStats = Docker.ContainerTools.GetContainerStats(containerId);
-        //         return Ok(containersStats);
-        //     }
-        //     catch (Utils.Exceptions.APIException apiEx)
-        //     {
-        //         return BadRequest(apiEx.Message);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return BadRequest("Houve um erro na API. Erro: " + ex.Message);
-        //     }
-        // }
     }
 }

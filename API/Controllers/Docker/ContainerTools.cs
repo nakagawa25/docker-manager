@@ -56,6 +56,22 @@ namespace API.Controllers.Docker
                 DeleteContainer(container.Id);
         }
 
+        public static bool StartContainer(string containerId)
+        {
+            var client = new RestClient(Models.Configuration.DockerURI + $"containers/{containerId}/start");
+            var request = new RestRequest(Method.POST);
+            IRestResponse response = client.Execute(request);
+            return response.IsSuccessful;
+        }
+
+        public static bool StopContainer(string containerId)
+        {
+            var client = new RestClient(Models.Configuration.DockerURI + $"containers/{containerId}/stop");
+            var request = new RestRequest(Method.POST);
+            IRestResponse response = client.Execute(request);
+            return response.IsSuccessful;
+        }
+
         private static void DeleteStoppedContainers()
         {
             var client = new RestClient(Models.Configuration.DockerURI + "containers/prune");
@@ -65,11 +81,12 @@ namespace API.Controllers.Docker
                 throw new Utils.Exceptions.APIException("Erro ao deletar os containers sem uso. Erro da API: " + response.ErrorMessage);
         }
 
-        public static void SaveRunningContainersStats(){
+        public static void SaveRunningContainersStats()
+        {
             try
             {
                 foreach (var container in GetContainers(false))
-                    GetContainerStats(container.Id).Insert();              
+                    GetContainerStats(container.Id).Insert();
             }
             catch (Exception ex)
             {
