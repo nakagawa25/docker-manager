@@ -78,5 +78,42 @@ namespace API.Controllers
                 return BadRequest("{\"message\":\"Erro interno da API. Erro: " + ex.Message + "\"}");
             }
         }
+
+        // TODO: Adicionar o filtro de data.
+        [HttpGet]
+        [Route("stats")]
+        public IActionResult GetStats()
+        {
+            try
+            {
+                var containersStats = Models.ContainerStats.GetAll();
+                return Ok(containersStats);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Houve um erro na API. Erro: " + ex.Message);
+            }
+        }
+
+
+        // // Test
+        // [HttpGet]
+        // [Route("test")]
+        // public IActionResult GetTest([FromBody] string containerId)
+        // {
+        //     try
+        //     {
+        //         var containersStats = Docker.ContainerTools.GetContainerStats(containerId);
+        //         return Ok(containersStats);
+        //     }
+        //     catch (Utils.Exceptions.APIException apiEx)
+        //     {
+        //         return BadRequest(apiEx.Message);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest("Houve um erro na API. Erro: " + ex.Message);
+        //     }
+        // }
     }
 }
