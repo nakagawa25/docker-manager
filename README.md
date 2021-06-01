@@ -10,10 +10,11 @@ This project was created to manage Docker containers in cloud platforms and virt
 - CSS
 - JavaScript
 - Vue.js
+- Ubuntu Server 20.04 LTS (OS)
 
 ## ⚙️ Prerequisites
 - [Docker](https://www.docker.com/)
-- [.NET Core SDK (version >= 3.1.409)](https://dotnet.microsoft.com/download/dotnet/3.1)
+- [.NET Core SDK (version >= 3.1.409)](https://dotnet.microsoft.com/download/dotnet/3.1) (to install it on [Linux](https://www.youtube.com/watch?v=FXfeuYGj9DU))
 - [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb) or [Live Server extension for VSCode](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
 ## Running
