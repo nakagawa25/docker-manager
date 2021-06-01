@@ -78,5 +78,54 @@ namespace API.Controllers
                 return BadRequest("{\"message\":\"Erro interno da API. Erro: " + ex.Message + "\"}");
             }
         }
+
+        [HttpPost]
+        [Route("start")]
+        public IActionResult Start([FromBody] string containerId)
+        {
+            try
+            {
+                if (Docker.ContainerTools.StartContainer(containerId))
+                    return Ok();
+                else
+                    return BadRequest("{\"message\":\"Não foi possível iniciar o container\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Erro ao iniciar o container. Erro: " + ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("stop")]
+        public IActionResult Stop([FromBody] string containerId)
+        {
+            try
+            {
+                if (Docker.ContainerTools.StopContainer(containerId))
+                    return Ok();
+                else
+                    return BadRequest("{\"message\":\"Não foi possível parar o container\"}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Erro ao parar o container. Erro: " + ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("stats")]
+        public IActionResult GetStats()
+        {
+            try
+            {
+                var containersStatus = Docker.ContainerTools.GetRunningContainerStatus();
+                return Ok(containersStatus);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Houve um erro na API. Erro: " + ex.Message);
+            }
+        }
     }
 }

@@ -21,3 +21,16 @@ D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\obj\Debug\netcoreap
 D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\RestSharp.dll
 D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\obj\Debug\netcoreapp3.1\API.csproj.CopyComplete
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\DnsClient.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\MongoDB.Driver.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\MongoDB.Libmongocrypt.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\SharpCompress.dll
+D:\Documentos\Projetos de Desenvolvimento\docker-manager\API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
