@@ -42,10 +42,8 @@ async function deleteContainer() {
         let containerId = document.getElementById('containerId').value;
         let url = "https://localhost:5001/v1/containers"
 
-        body = 
-            containerId
-        
-
+        body = containerId
+    
         console.log(containerId)
         console.log(body)
 

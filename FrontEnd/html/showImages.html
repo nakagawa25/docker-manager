@@ -93,18 +93,18 @@
     <section class="containersInformation">
         <div class="container">
             <div id="cards">
-                <card 
-                v-for="(value, index) in images"
+                <card v-for="(value, index) in images"
                 v-bind:key="value.id"
+                v-bind:id="value.id"
                 v-bind:index="index+1"
-                v-bind:repoDigest="value.repoDigest"
-                v-bind:repoTags="value.repoTags"
+                v-bind:repodigest="value.repoDigest"
+                v-bind:repotags="value.repoTags"
                 v-bind:size="value.size">
                 </card>
             </div>
-    </div>
+        </div>
     </section>
-   
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script type="module">
@@ -122,24 +122,20 @@
         }
 
         Vue.component('card', {
-            // data: function (){
-            //     return{
-                    // props: ['container'],
-                    props: [
-                        'id',
-                        'repoDigest',
-                        'repoTags',
-                        'size',
-                    ],
-                // }
-            // },
+            props: [
+                'index',
+                'id',
+                'repodigest',
+                'repotags',
+                'size',
+            ],
             template: `<div class="containerCard">
                 <div class="iconCards">{{index}}</div>
                 <div class="contentContainer">
-                    <h3 class="containerName">{{repoTags}}</h3>
-                    <p>Id:{{id}}</p>
-                    <p>repoDigest:{{repoDigest}}</p>
-                    <p>size:{{size}}</p>
+                    <h3 class="containerName">{{repotags}}</h3>
+                    <p>Id: {{id}}</p>
+                    <p>repoDigest: {{repodigest}}</p>
+                    <p>size: {{size}}</p>
                 </div>
             </div>`
         })

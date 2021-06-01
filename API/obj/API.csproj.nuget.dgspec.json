@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\Projetos de Desenvolvimento\\docker-manager\\API\\API.csproj": {}
+    "C:\\Users\\jp230\\Desktop\\Docker - Redes\\docker-manager\\API\\API.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\Projetos de Desenvolvimento\\docker-manager\\API\\API.csproj": {
+    "C:\\Users\\jp230\\Desktop\\Docker - Redes\\docker-manager\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Projetos de Desenvolvimento\\docker-manager\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\jp230\\Desktop\\Docker - Redes\\docker-manager\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\Documentos\\Projetos de Desenvolvimento\\docker-manager\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\Lucas Nakagawa\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Projetos de Desenvolvimento\\docker-manager\\API\\obj\\",
+        "projectPath": "C:\\Users\\jp230\\Desktop\\Docker - Redes\\docker-manager\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\jp230\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jp230\\Desktop\\Docker - Redes\\docker-manager\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Lucas Nakagawa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jp230\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

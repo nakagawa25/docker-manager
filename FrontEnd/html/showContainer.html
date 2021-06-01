@@ -93,19 +93,14 @@
     <section class="containersInformation">
         <div class="container">
             <div id="cards">
-                <card 
-                v-for="(value, index) in containers"
-                v-bind:key="value.id"
-                v-bind:index="index+1"
-                v-bind:name="value.name"
-                v-bind:ports="value.ports"
-                v-bind:status="value.status"
-                v-bind:imageName="value.imageName">
+                <card v-for="(value, index) in containers" v-bind:key="value.id" v-bind:id="value.id"
+                    v-bind:index="index+1" v-bind:name="value.name.split('/')[1]" v-bind:ports="value.ports"
+                    v-bind:status="value.status" v-bind:imagename="value.imageName">
                 </card>
             </div>
-    </div>
+        </div>
     </section>
-   
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script type="module">
@@ -123,28 +118,76 @@
         }
 
         Vue.component('card', {
-            // data: function (){
-            //     return{
-                    // props: ['container'],
-                    props: [
-                        'id',
-                        'index',
-                        'name',
-                        'ports',
-                        'status',
-                        'imageName'
-                    ],
-                // }
-            // },
+            props: [
+                'id',
+                'index',
+                'name',
+                'ports',
+                'status',
+                'imagename'
+            ],
+            methods: {
+                play: function (id) {
+                    try {
+                        var vueThis = this;
+                        let url = "https://localhost:5001/v1/containers/start"
+
+                        body = id
+
+                        let request = new XMLHttpRequest()
+                        request.open("POST", url, true)
+                        request.setRequestHeader("Content-type", "application/json")
+                        request.send(JSON.stringify(body))
+
+                        request.onload = function () {
+                            if (this.status === 200) {
+                                vueThis.$parent.getContainers()
+                                alert("Container iniciado com sucesso")
+                            }
+                        }
+
+                        return request.responseText
+                    }
+                    catch (error) {
+                        console.log(error)
+                    }
+                },
+                pause: function (id) {
+                    try {
+                        var vueThis = this;
+                        let url = "https://localhost:5001/v1/containers/stop"
+
+                        body = id
+
+                        let request = new XMLHttpRequest()
+                        request.open("POST", url, true)
+                        request.setRequestHeader("Content-type", "application/json")
+                        request.send(JSON.stringify(body))
+
+                        request.onload = function () {
+                            if (this.status === 200) {
+                                vueThis.$parent.getContainers()
+                                alert("Container iniciado com sucesso")
+                            }
+                        }
+                        return request.responseText
+                    }
+                    catch (error) {
+                        console.error(error)
+                    }
+                },
+                
+            },
             template: `<div class="containerCard">
                 <div class="iconCards">{{index}}</div>
                 <div class="contentContainer">
                     <h3 class="containerName">{{name}}</h3>
-                    <p>Name:{{name}}</p>
-                    <p>Ports:{{ports}}</p>
-                    <p>Status:{{status}}</p>
-                    <p>ImageName:{{imageName}}</p>
-                    <a class="test" href="#">Play/Pause</a>
+                    <p>Name: {{name}}</p>
+                    <p>Ports: {{ports}}</p>
+                    <p>Status: {{status}}</p>
+                    <p>ImageName: {{imagename}}</p>
+                    <a class="test" href="#" v-on:click="play(id)"">Play</a>
+                    <a class="test" href="#" v-on:click="pause(id)">Pause</a>
                 </div>
             </div>`
         })
@@ -165,12 +208,11 @@
                         request.open("GET", url, false)
                         request.send()
                         this.containers = JSON.parse(request.responseText)
-                        // console.log(JSON.parse(request.responseText))
                     }
                     catch (error) {
                         console.log(error)
                     }
-                }
+                },
             }
         })
     </script>
