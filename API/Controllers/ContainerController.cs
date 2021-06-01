@@ -113,15 +113,14 @@ namespace API.Controllers
             }
         }
 
-        // TODO: Adicionar o filtro de data.
         [HttpGet]
         [Route("stats")]
         public IActionResult GetStats()
         {
             try
             {
-                var containersStats = Models.ContainerStats.GetAll();
-                return Ok(containersStats);
+                var containersStatus = Docker.ContainerTools.GetRunningContainerStatus();
+                return Ok(containersStatus);
             }
             catch (Exception ex)
             {

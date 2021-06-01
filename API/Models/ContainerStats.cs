@@ -8,23 +8,13 @@ namespace API.Models
         public ContainerStats()
         {
             Networks = new List<NetworkStats>();
+            Container = new Container();
         }
         public decimal CpuUsage { get; set; }
         public decimal MemoryUsage { get; set; }
         public List<NetworkStats> Networks { get; set; }
         public DateTime InsertionDateTime { get; set; }
-
-
-        public void Insert()
-        {
-            // TODO: implementar
-        }
-
-        public static List<ContainerStats> GetAll()
-        {
-            // TODO: implementar
-            return null;
-        }
+        public Container Container { get; set; }
     }
 
     public class NetworkStats

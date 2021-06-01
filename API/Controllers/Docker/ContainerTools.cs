@@ -81,21 +81,18 @@ namespace API.Controllers.Docker
                 throw new Utils.Exceptions.APIException("Erro ao deletar os containers sem uso. Erro da API: " + response.ErrorMessage);
         }
 
-        public static void SaveRunningContainersStats()
+        public static List<Models.ContainerStats> GetRunningContainerStatus()
         {
-            try
-            {
-                foreach (var container in GetContainers(false))
-                    GetContainerStats(container.Id).Insert();
+            List<Models.ContainerStats> containers = new List<Models.ContainerStats>();
+            foreach (var container in GetContainers(false)){
+                var containerStatus = GetContainerStats(container.Id);
+                containerStatus.Container = container;
+                containers.Add(containerStatus);
             }
-            catch (Exception ex)
-            {
-                // TODO: Add Log.
-                throw;
-            }
+            return containers;
         }
 
-        public static Models.ContainerStats GetContainerStats(string containerId)
+        private static Models.ContainerStats GetContainerStats(string containerId)
         {
             var client = new RestClient(Models.Configuration.DockerURI + $@"containers/{containerId}/stats");
             var request = new RestRequest(Method.GET);
@@ -107,7 +104,7 @@ namespace API.Controllers.Docker
                 throw new Utils.Exceptions.APIException("Não foi possível obter os stats do container: " + containerId);
         }
 
-        public static Models.ContainerStats CreateContainerStatsObject(JToken json)
+        private static Models.ContainerStats CreateContainerStatsObject(JToken json)
         {
             Models.ContainerStats containerStats = new Models.ContainerStats();
             var cpuDelta = (decimal)json["cpu_stats"]["cpu_usage"]["total_usage"] - (decimal)json["precpu_stats"]["cpu_usage"]["total_usage"];
