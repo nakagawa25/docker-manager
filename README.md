@@ -1,5 +1,5 @@
 # Docker Manager
-An Application to manage the Docker in Cloud plataforms.
+An application to manage the Docker in Cloud plataforms.
 
 ## 📖 About
 This project was created to manage Docker containers in cloud platforms and virtual machines. Using the Docker API, it can manage resources like: create, list and delete images and containers and get current stats of running containers.
@@ -12,6 +12,7 @@ This project was created to manage Docker containers in cloud platforms and virt
 - Vue.js
 
 ## ⚙️ Prerequisites
+- [Docker](https://www.docker.com/)
 - [.NET Core SDK (version >= 3.1.409)](https://dotnet.microsoft.com/download/dotnet/3.1)
 - [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb) or [Live Server extension for VSCode](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
@@ -45,7 +46,7 @@ $ dotnet run
 
 **-Using Live Server extension from VSCode**
 1. Open the project in Visual Studio Code
-2. Open the `index.html`
+2. Open the `index.html` file
 3. In the upper menu, click View -> Command Palette
-4. Type **Live Server: Open with Live Server**, then select it
+4. Type `Live Server: Open with Live Server`, then select it
 5. It will open the app interface in your web browser
