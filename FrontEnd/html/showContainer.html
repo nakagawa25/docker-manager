@@ -167,7 +167,7 @@
                         request.onload = function () {
                             if (this.status === 200) {
                                 vueThis.$parent.getContainers()
-                                alert("Container iniciado com sucesso")
+                                alert("Container parado com sucesso")
                             }
                         }
                         return request.responseText
@@ -185,7 +185,7 @@
                     <p>Name: {{name}}</p>
                     <p>Ports: {{ports}}</p>
                     <p>Status: {{status}}</p>
-                    <p>ImageName: {{imagename}}</p>
+                    <p>ImageId: {{id}}</p>
                     <a class="test" href="#" v-on:click="play(id)"">Play</a>
                     <a class="test" href="#" v-on:click="pause(id)">Pause</a>
                 </div>

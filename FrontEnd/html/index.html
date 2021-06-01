@@ -26,7 +26,7 @@
 <body>
 
     <header>
-        <h4>Show Images</h4>
+        <h4>Monitor</h4>
     </header>
     <!--Section 01-->
     <section class="section2">
@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="showImages.html">
                         <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
                         <span class="title">Show images</span>
                     </a>
@@ -93,13 +93,22 @@
     <section class="containersInformation">
         <div class="container">
             <div id="cards">
-                <card v-for="(value, index) in images"
-                v-bind:key="value.id"
-                v-bind:id="value.id"
+                <card v-for="(value, index) in stats"
+                v-bind:key="value.container.id"
+                v-bind:id="value.container.id"
                 v-bind:index="index+1"
-                v-bind:repodigest="value.repoDigest"
-                v-bind:repotags="value.repoTags"
-                v-bind:size="value.size">
+                v-bind:name="value.container.name.split('/')[1]"   
+                v-bind:cpuusage="value.cpuUsage"   
+                v-bind:memoryusage="value.memoryUsage"   
+                v-bind:networkinterface="value.networks[0].networkInterface"   
+                v-bind:receivebytes="value.networks[0].receiveBytes"   
+                v-bind:receivepackets="value.networks[0].receivePackets"   
+                v-bind:receiveerros="value.networks[0].receiveErros"   
+                v-bind:receivedropped="value.networks[0].receiveDropped"   
+                v-bind:transmitpackets="value.networks[0].transmitPackets" 
+                v-bind:transmiterros="value.networks[0].transmitErros"   
+                v-bind:transmitdropped="value.networks[0].transmitDropped"   
+                >
                 </card>
             </div>
         </div>
@@ -125,17 +134,34 @@
             props: [
                 'index',
                 'id',
-                'repodigest',
-                'repotags',
-                'size',
+                'name',
+                'cpuusage',
+                'memoryusage',
+                'networkinterface',
+                'receivebytes',
+                'receivepackets',
+                'receiveerros',
+                'receivedropped',
+                'transmitbytes',
+                'transmitpackets',
+                'transmiterros',
+                'transmitdropped'
             ],
             template: `<div class="containerCard">
                 <div class="iconCards">{{index}}</div>
                 <div class="contentContainer">
-                    <h3 class="containerName">{{repotags}}</h3>
-                    <p>Id: {{id}}</p>
-                    <p>repoDigest: {{repodigest}}</p>
-                    <p>size: {{size}}</p>
+                    <h3 class="containerName">{{name}}</h3>
+                    <p>CPU Usage: {{cpuusage}}%</p>
+                    <p>Memory Usage: {{memoryusage}}%</p>
+                    <p>NetworkInterface: {{networkinterface}}</p>
+                    <p>Receive Bytes: {{receivebytes}}</p>
+                    <p>Receive Packets: {{receivepackets}}</p>
+                    <p>Receive Erros: {{receiveerros}}</p>
+                    <p>Receive Dropped: {{receivedropped}}</p>
+                    <p>Transmit Bytes: {{transmitbytes}}</p>
+                    <p>Transmit Packets: {{transmitpackets}}</p>
+                    <p>Transmit Erros: {{transmiterros}}</p>
+                    <p>Transmit Dropped: {{transmitdropped}}</p>
                 </div>
             </div>`
         })
@@ -143,7 +169,7 @@
         var app = new Vue({
             el: '#cards',
             data: {
-                images: []
+                stats: []
             },
             mounted: function () {
                 this.getStats()
@@ -152,10 +178,11 @@
                 getStats: function () {
                     try {
                         let request = new XMLHttpRequest()
-                        let url = "https://localhost:5001/v1/stats"
+                        let url = "https://localhost:5001/v1/containers/stats"
                         request.open("GET", url, false)
                         request.send()
-                        this.images = JSON.parse(request.responseText)
+                        this.stats = JSON.parse(request.responseText)
+                        console.log(JSON.parse(request.responseText))
                         // console.log(JSON.parse(request.responseText))
                     }
                     catch (error) {
