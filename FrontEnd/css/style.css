@@ -9,6 +9,7 @@
 
 header
 {
+    /* position: fixed; */
     height: 60px;
     background: #0563af;
     border-bottom: 1px solid black;
@@ -95,7 +96,7 @@ body
 
 .toggle
 {
-    position: absolute;
+    position: fixed;
     top: 0;
     /* right: -100%; */
     left: 0;
@@ -139,6 +140,11 @@ body
     margin-top: 30px;
 }
 
+.deleteAll
+{
+    margin-left: 28%;
+}
+
 /* .box
 {
     position: absolute;
@@ -151,8 +157,8 @@ body
     background: #0563af;
     color: #fff;
     padding: 10px;
-    width: 250px;
-    height: 50px;
+    width: 830px;
+    height: 45px;
     border: none;
     font-size: 18px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, .5);

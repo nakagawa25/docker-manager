@@ -8,8 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/style2.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
 
 
     <title>
@@ -32,7 +32,7 @@
     </header> -->
 
     <header>
-        <h4>Delete Container</h4>
+        <h4>Delete Image</h4>
     </header>
     <!--Section 01-->
     <section class="section2">
@@ -64,13 +64,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deleteAllContainers.html">
                         <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                         <span class="title">Delete all containers</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="showImages.html">
                         <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
                         <span class="title">Show images</span>
                     </a>
@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deleteAllImage.html">
                         <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                         <span class="title">Delete all images</span>
                     </a>
@@ -101,20 +101,20 @@
                 <div class="row100">
                     <div class="col">
                         <div class="inputBox">
-                            <input type="text" name="" required="required">
-                            <span class="text">Container Id</span>
+                            <input type="text" name="imageId" id="imageId" required="required">
+                            <span class="text">Image Id</span>
                             <span class="line"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row100">
                     <div class="col">
-                        <input type="submit" value="Delete">
+                        <input type="submit" value="Delete" onclick="deleteImage()">  
                     </div>
                 </div>
         </div>
     </section>
-
+    <script src="../js/script.js"></script>
     <script type="text/javascript">
         function toggleMenu() {
             let navigation = document.querySelector('.navigation');

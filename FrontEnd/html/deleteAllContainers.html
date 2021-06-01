@@ -1,38 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous"> -->
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/style2.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
 
     <title>
         Sistema de Gerenciamento e Monitoramento de Serviços em Docker
     </title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    </head>
-  <body>
+</head>
 
-    <!--Header-->
-    <!-- <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Sistema de Gerenciamento e Monitoramento de Serviços em Docker</h4>
-                </div>
-            </div>
-        </div>
-    </header> -->
+<body>
 
     <header>
-        <h4>Pull Image</h4>
+        <h4>Delete All Containers</h4>
     </header>
     <!--Section 01-->
     <section class="section2">
@@ -70,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="showImages.html">
                         <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
                         <span class="title">Show images</span>
                     </a>
@@ -88,40 +80,38 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deleteAllImage.html">
                         <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                         <span class="title">Delete all images</span>
                     </a>
                 </li>
             </ul>
         </div>
-        <!-- ---------------------------------Campos e Botões-------------------------------------->
+        <!------------------------------------Campos e Botões-------------------------------------->
         <div class="form-create-container">
-            <!-- <h2>Create Container</h2> -->
-                <div class="row100">
-                    <div class="col">
-                        <div class="inputBox">
-                            <input type="text" name="" required="required">
-                            <span class="text">Name Image</span>
-                            <span class="line"></span>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="inputBox">
-                            <input type="text" name="" required="required">
-                            <span class="text">Tag Image</span>
-                            <span class="line"></span>
-                        </div>
-                    </div>
+            <div class="row100">
+                <div class="col">
+                    <input type="submit" value="Delete All" class="deleteAll" onclick="deleteContainerAll()">
                 </div>
-                <div class="row100">
-                    <div class="col">
-                        <input type="submit" value="Pull">
-                    </div>
-                </div>
+            </div>
         </div>
     </section>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="module">
+        import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+    </script>
+    <script src="../js/script.js"></script>
     <script type="text/javascript">
         function toggleMenu() {
             let navigation = document.querySelector('.navigation');
@@ -130,12 +120,6 @@
             toggle.classList.toggle('active');
         }
     </script>
+</body>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  </body>
 </html>
-

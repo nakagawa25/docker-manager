@@ -1,24 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous"> -->
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/style2.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
 
     <title>
         Sistema de Gerenciamento e Monitoramento de Serviços em Docker
     </title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    </head>
-  <body>
+</head>
+
+<body>
 
     <header>
         <h4>Create Container</h4>
@@ -53,13 +56,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deleteAllContainers.html">
                         <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                         <span class="title">Delete all containers</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="showImages.html">
                         <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
                         <span class="title">Show images</span>
                     </a>
@@ -77,7 +80,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deleteAllImage.html">
                         <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                         <span class="title">Delete all images</span>
                     </a>
@@ -85,41 +88,53 @@
             </ul>
         </div>
         <!------------------------------------Campos e Botões-------------------------------------->
-        <div class="form-create-container">
-            <!-- <h2>Create Container</h2> -->
-                <div class="row100">
-                    <div class="col">
-                        <div class="inputBox">
-                            <div class="box">
-                                <select name="format" id="format">
-                                    <option selected disabled>Choose an image</option>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                    <option>Option 6</option>
-                                </select>
-                            </div>
+        <div class="form-create-container" id="app">
+            <div class="row100">
+                <div class="col">
+                    <div class="inputBox">
+                        <div class="box">
+                            <select name="format" id="format">
+                                <option selected disabled>Choose an image</option>
+                                <option v-for="option in options">
+                                    {{option.id.split(':')[1]}}
+                                </option>
+                            </select>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="inputBox">
-                            <input type="text" name="" required="required">
-                            <span class="text">Name Container</span>
-                            <span class="line"></span>
-                        </div>
-                    </div>
-                    
                 </div>
-                <div class="row100">
-                    <div class="col">
-                        <input onclick="alert('ATENÇÃO')" type="submit" value="Create">
+                <div class="col">
+                    <div class="inputBox">
+                        <input type="text" name="nameContainer" id="nameContainer" required="required">
+                        <span class="text">Name Container</span>
+                        <span class="line"></span>
                     </div>
                 </div>
+            </div>
+            <div class="row100">
+                <div class="col">
+                    <input type="submit" value="Create" onclick="createContainer()">
+                </div>
+            </div>
         </div>
     </section>
 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="module">
+        import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+    </script>
+    <script src="../js/script.js"></script>
     <script type="text/javascript">
         function toggleMenu() {
             let navigation = document.querySelector('.navigation');
@@ -127,13 +142,32 @@
             navigation.classList.toggle('active');
             toggle.classList.toggle('active');
         }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                options: []
+            },
+            mounted: function () {
+                this.getImage()
+            },
+            methods: {
+                getImage: function () {
+                    try {
+                        let request = new XMLHttpRequest()
+                        let url = "https://localhost:5001/v1/images"
+                        request.open("GET", url, false)
+                        request.send()
+                        this.options = JSON.parse(request.responseText)
+                        // console.log(JSON.parse(request.responseText))
+                    }
+                    catch (error) {
+                        console.log(error)
+                    }
+                }
+            }
+        })
     </script>
+</body>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  </body>
 </html>
-

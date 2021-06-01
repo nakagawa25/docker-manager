@@ -8,7 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
 
     <title>
         Sistema de Gerenciamento e Monitoramento de Serviços em Docker
@@ -30,7 +31,7 @@
     </header> -->
 
     <header>
-        <h4>Show Container</h4>
+        <h4>Delete Container</h4>
     </header>
     <!--Section 01-->
     <section class="section2">
@@ -62,13 +63,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deleteAllContainers.html">
                         <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                         <span class="title">Delete all containers</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="showImages.html">
                         <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
                         <span class="title">Show images</span>
                     </a>
@@ -86,12 +87,30 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="deleteAllImage.html">
                         <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
                         <span class="title">Delete all images</span>
                     </a>
                 </li>
             </ul>
+        </div>
+        <!-- ---------------------------------Campos e Botões-------------------------------------->
+        <div class="form-create-container">
+            <!-- <h2>Create Container</h2> -->
+                <div class="row100">
+                    <div class="col">
+                        <div class="inputBox">
+                            <input type="text" name="containerId" id="containerId" required="required">
+                            <span class="text">Container Id</span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row100">
+                    <div class="col">
+                        <input type="submit" value="Delete" onclick="deleteContainer()">
+                    </div>
+                </div>
         </div>
     </section>
 
@@ -103,7 +122,7 @@
             toggle.classList.toggle('active');
         }
     </script>
-
+    <script src="../js/script.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
