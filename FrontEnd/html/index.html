@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous"> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/style3.css">
+
+
+    <title>
+        Sistema de Gerenciamento e Monitoramento de Serviços em Docker
+    </title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <h4>Monitor</h4>
+    </header>
+    <!--Section 01-->
+    <section class="section2">
+        <div class="toggle" onclick="toggleMenu()"></div>
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <span class="icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
+                        <span class="title">Monitor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="showContainer.html">
+                        <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="title">Show containers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="createContainer.html">
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span class="title">Create container</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="deleteContainer.html">
+                        <span class="icon"><i class="fa fa-minus-square-o" aria-hidden="true"></i></span>
+                        <span class="title">Delete container</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="deleteAllContainers.html">
+                        <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                        <span class="title">Delete all containers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="showImages.html">
+                        <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="title">Show images</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pullImage.html">
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span class="title">Pull Image</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="deleteImage.html">
+                        <span class="icon"><i class="fa fa-minus-square-o" aria-hidden="true"></i></span>
+                        <span class="title">Delete image</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="deleteAllImage.html">
+                        <span class="icon"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                        <span class="title">Delete all images</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="containersInformation">
+        <div class="container">
+            <div id="cards">
+                <card v-for="(value, index) in stats"
+                v-bind:key="value.container.id"
+                v-bind:id="value.container.id"
+                v-bind:index="index+1"
+                v-bind:name="value.container.name.split('/')[1]"   
+                v-bind:cpuusage="value.cpuUsage"   
+                v-bind:memoryusage="value.memoryUsage"   
+                v-bind:networkinterface="value.networks[0].networkInterface"   
+                v-bind:receivebytes="value.networks[0].receiveBytes"   
+                v-bind:receivepackets="value.networks[0].receivePackets"   
+                v-bind:receiveerros="value.networks[0].receiveErros"   
+                v-bind:receivedropped="value.networks[0].receiveDropped"   
+                v-bind:transmitpackets="value.networks[0].transmitPackets" 
+                v-bind:transmiterros="value.networks[0].transmitErros"   
+                v-bind:transmitdropped="value.networks[0].transmitDropped"   
+                >
+                </card>
+            </div>
+        </div>
+    </section>
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="module">
+        import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+    </script>
+
+    <script src="../js/script.js"></script>
+
+    <script type="text/javascript">
+        function toggleMenu() {
+            let navigation = document.querySelector('.navigation');
+            let toggle = document.querySelector('.toggle');
+            navigation.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        Vue.component('card', {
+            props: [
+                'index',
+                'id',
+                'name',
+                'cpuusage',
+                'memoryusage',
+                'networkinterface',
+                'receivebytes',
+                'receivepackets',
+                'receiveerros',
+                'receivedropped',
+                'transmitbytes',
+                'transmitpackets',
+                'transmiterros',
+                'transmitdropped'
+            ],
+            template: `<div class="containerCard">
+                <div class="iconCards">{{index}}</div>
+                <div class="contentContainer">
+                    <h3 class="containerName">{{name}}</h3>
+                    <p>CPU Usage: {{cpuusage}}%</p>
+                    <p>Memory Usage: {{memoryusage}}%</p>
+                    <p>NetworkInterface: {{networkinterface}}</p>
+                    <p>Receive Bytes: {{receivebytes}}</p>
+                    <p>Receive Packets: {{receivepackets}}</p>
+                    <p>Receive Erros: {{receiveerros}}</p>
+                    <p>Receive Dropped: {{receivedropped}}</p>
+                    <p>Transmit Bytes: {{transmitbytes}}</p>
+                    <p>Transmit Packets: {{transmitpackets}}</p>
+                    <p>Transmit Erros: {{transmiterros}}</p>
+                    <p>Transmit Dropped: {{transmitdropped}}</p>
+                </div>
+            </div>`
+        })
+
+        var app = new Vue({
+            el: '#cards',
+            data: {
+                stats: []
+            },
+            mounted: function () {
+                this.getStats()
+            },
+            methods: {
+                getStats: function () {
+                    try {
+                        let request = new XMLHttpRequest()
+                        let url = "https://localhost:5001/v1/containers/stats"
+                        request.open("GET", url, false)
+                        request.send()
+                        this.stats = JSON.parse(request.responseText)
+                        console.log(JSON.parse(request.responseText))
+                        // console.log(JSON.parse(request.responseText))
+                    }
+                    catch (error) {
+                        console.log(error)
+                    }
+                }
+            }
+        })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

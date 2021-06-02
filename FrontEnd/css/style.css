@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+header
+{
+    /* position: fixed; */
+    height: 60px;
+    background: #0563af;
+    border-bottom: 1px solid black;
+}
+
+body
+{
+    min-height: 100vh;
+    background: #AAAFBF;
+    font-family: sans-serif;
+}
+
+.navigation
+{
+    position: fixed;
+    width: 60px;
+    height: 100%;
+    background: #0563af;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.navigation.active
+{
+    width: 300px;
+}
+
+.navigation ul
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation ul li
+{
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.navigation ul li:hover
+{
+    background: #201B2D;
+}
+
+
+.navigation ul li a
+{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navigation ul li a .icon
+{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+.navigation ul li a .icon .fa
+{
+    font-size: 24px;
+}
+
+.navigation ul li a .title
+{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
+
+.toggle
+{
+    position: fixed;
+    top: 0;
+    /* right: -100%; */
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: #0563af;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+    /* border-right: 1px solid black; */
+
+}
+
+.toggle.active
+{
+    background: #201B2D;
+}
+
+.toggle:before
+{
+    content: '\f0c9';
+    font-family: fontAwesome;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+}
+
+.toggle.active:before
+{
+    content: '\f00d';
+}
+
+.charts
+{
+    width: 900px;
+    height: 900px;
+    margin-left: 30%;
+    margin-top: 30px;
+}
+
+.deleteAll
+{
+    margin-left: 28%;
+}
+
+/* .box
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.box select{
+    background: #0563af;
+    color: #fff;
+    padding: 10px;
+    width: 830px;
+    height: 45px;
+    border: none;
+    font-size: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, .5);
+    -webkit-appearance: button;
+    outline: none;
+    /* font-family: "Poppins",sans-serif; */
+}
+
+.box:before
+{
+    content: '';
+    /* position: absolute; */
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: #007ce0;
+}
+
+.box:hover:before
+{
+    background: #0472ca;
+}
+
+
+ /* select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background: #5B639C;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+ }
+ select::-ms-expand {
+    display: none;
+ }
+ .select {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #5c6664;
+    overflow: hidden;
+    border-radius: .25em;
+ }
+ .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #2b2e2e;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+ }
+ .select:hover::after {
+    color: #23b499;
+ } */
+h4
+{
+    padding-top: 15px;
+    color: #fff;
+    text-align: center;
+}
+
+@media(max-width: 767px)
+{
+    .navigation
+    {
+        left: -60px;
+    }
+    .navigation.active
+    {
+        left: 0px;
+        width: 100%;
+    }
+
+    header h4
+    {
+        font-size: 15px;
+    }
+    .toggle
+    {
+        width: 50px;
+    }
+}
+
